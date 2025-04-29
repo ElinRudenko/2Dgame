@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveScript : MonoBehaviour
 {
-    //[SerializeField]
-    private float speed = 2.5f;
+    public static float difficulty = 0.5f;
+    public static float speed;
 
     void Update()
     {
-        this.transform.Translate(speed * Time.deltaTime * Vector3.left);
+        // Теперь скорость зависит от инвертированного значения difficulty
+        speed = 2f + 2.5f * difficulty;  // Чем ниже значение difficulty, тем выше скорость
+
+        transform.Translate(speed * Time.deltaTime * Vector3.left);
     }
 }

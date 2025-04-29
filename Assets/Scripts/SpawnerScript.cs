@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour
 {
+
     [SerializeField] private GameUIStats gameUIStats; // Ссылка на GameUIStats для обновления UI
 
     [SerializeField] private GameObject pipePrefab;

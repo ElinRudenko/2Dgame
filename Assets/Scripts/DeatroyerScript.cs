@@ -30,4 +30,26 @@ public class DeatroyerScript : MonoBehaviour
             }
         }
     }
+
+
+    public static void ClearField()
+    {
+        foreach(var go in GameObject.FindGameObjectsWithTag("Pipe"))
+        {
+            Destroy(go);
+        }
+    }
+
+    private static void DeepDestroy(GameObject go)
+    {
+        Transform current = go.transform;
+        while(current != null)
+        {
+            Transform parent = current. parent;
+            Destroy(current.gameObject);
+            current = parent;
+        }
+    }
+
+
 }

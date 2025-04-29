@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,16 @@ public class AlertScript : MonoBehaviour
     private static Text button;
     private static GameObject content;  // content должен быть объектом GameObject, а не Text
 
-    public static void Show(string titleText, string messageText, string actionButtonText = "Close")
+    private static Action action;
+
+    public static void Show(string titleText, string messageText, string actionButtonText = "Close", Action action = null)
     {
         // Устанавливаем текст на экране
         title.text = titleText;
         message.text = messageText;
         button.text = actionButtonText;
+        AlertScript.action = action;
+
         
         // Показываем content
         content.SetActive(true);
@@ -50,5 +55,9 @@ public class AlertScript : MonoBehaviour
     {
         content.SetActive(false);
         Time.timeScale = 1.0f;
+        if (action != null) action.Invoke();
+        DeatroyerScript.ClearField();
     }
 }
+
+
